@@ -1,15 +1,23 @@
 <template>
 	<div id="app">
-		<button @click="_statement">click</button>
+		<button @click="_statement">statement</button>
+		<button @click="_htmlStatement">htmlStatement</button>
+
+		<p>{{result}}</p>
+		<div v-html="htmlText"></div>
 	</div>
 </template>
 
 <script>
 import {ref, onMounted, computed} from '@vue/composition-api'
-import {statement} from '@/func/statement'
+import {
+	statement, 
+	htmlStatement
+} from '@/func/statement'
 export default {
 	name: 'App',
 	setup() {
+		// 假数据
 		const plays = ref({
 			"hamlet": {name: "Hamlet", type: "tragedy"},
 			"as-like": {name: "As You Like It", type: "comedy"},
@@ -32,13 +40,21 @@ export default {
 				}
 			]
 		})
+		const result = ref('')
 		function _statement() {
-			console.log(statement(invoice.value, plays.value))
+			result.value = statement(invoice.value, plays.value)
+		}
+		const htmlText = ref('')
+		function _htmlStatement() {
+			htmlText.value = htmlStatement(invoice.value, plays.value)
 		}
 		return {
 			plays, 
 			invoice,
-			_statement
+			_statement,
+			result,
+			_htmlStatement,
+			htmlText
 		}
 	},
 }
