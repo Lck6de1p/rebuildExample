@@ -45,6 +45,7 @@ class PerformanceCalculator {
         return Math.max(this.performance.audience - 30, 0)
     }
 }
+
 class TragedyCalculator extends PerformanceCalculator {
     get amount() {
         let result = 40000
@@ -54,6 +55,7 @@ class TragedyCalculator extends PerformanceCalculator {
         return result
     }
 }
+
 class ComedyCalculator extends PerformanceCalculator {
     get amount() {
         let result = 30000;
